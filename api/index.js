@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export default async function handler(req, res) {
   try {
     // Definir a URL de destino
@@ -9,6 +7,8 @@ export default async function handler(req, res) {
     const headers = {
       ...req.headers,
       Authorization: `Bearer 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`,
+      // Modificar o cabeçalho Host
+      Host: 'hf.space',
     };
 
     // Fazendo a requisição para a API externa
