@@ -1,0 +1,26 @@
+import fetch from 'node-fetch';
+
+export default async function handler(req, res) {
+  // Definir a URL de destino
+  const apiUrl = `https://habulaj-mysqlapi.hf.space${req.url}`;
+
+  // Adicionar o token Bearer ao cabeçalho
+  const headers = {
+    ...req.headers,
+    Authorization: `Bearer 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`,
+  };
+
+  // Fazendo a requisição para a API externa
+  const response = await fetch(apiUrl, {
+    method: req.method,
+    headers: headers,
+    body: req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE' ? JSON.stringify(req.body) : null,
+  });
+
+  // Pegando o conteúdo da resposta
+  const data = await response.text();
+
+  // Configurando a resposta do Vercel sem expor cabeçalhos desnecessários
+  res.setHeader('Content-Type', 'application/json');
+  res.status(response.status).send(data);
+}
