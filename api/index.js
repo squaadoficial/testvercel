@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   try {
     // Definir a URL de destino
-    const apiUrl = `https://habulaj-mysqlapi.hf.space${req.url}`;
+    const apiUrl = `https://corsproxy.io/?https://habulaj-mysqlapi.hf.space${req.url}`;
 
     // Adicionar o token Bearer ao cabeçalho
     const headers = {
